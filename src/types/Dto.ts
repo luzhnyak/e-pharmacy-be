@@ -1,66 +1,66 @@
 export type UserDto = {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   password: string;
 };
 
 export type ProductDto = {
-  id: number;
+  id?: number;
   photo: string;
   name: string;
   suppliers: string;
-  stock: number;
-  price: number;
+  stock: string;
+  price: string;
   category: string;
 };
 
 export type SupplierDto = {
-  id: number;
+  id?: number;
   name: string;
   address: string;
   date: string;
-  amount: number;
+  amount: string;
   status: string;
 };
 
 export type CustomerDto = {
-  id: number;
+  id?: number;
   photo: string;
   name: string;
   email: string;
-  spent: number;
+  spent: string;
   phone: string;
   address: string;
   register_date: string;
 };
 
 export type OrderDto = {
-  id: number;
+  id?: number;
   photo: string;
   name: string;
   address: string;
-  products: number;
-  price: number;
+  products: string;
+  price: string;
   status: string;
   order_date: string;
 };
 
-export type IncomeExpensesDTO = {
-  id: number;
+export type IncomeExpenseDto = {
+  id?: number;
   name: string;
-  amount: number;
+  amount: string;
   type: string;
 };
 
 export type ReviewDto = {
-  id: number;
+  id?: number;
   name: string;
   testimonial: string;
 };
 
-export type PharmacieDto = {
-  id: number;
+export type PharmacyDto = {
+  id?: number;
   name: string;
   address: string;
   city: string;
@@ -68,8 +68,8 @@ export type PharmacieDto = {
   rating: number;
 };
 
-export type LenearestPharmaciesssonsDto = {
-  id: number;
+export type NearestPharmacyDto = {
+  id?: number;
   name: string;
   address: string;
   city: string;

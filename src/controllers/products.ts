@@ -1,17 +1,12 @@
 import { Request, Response } from "express";
 
 import { HttpError, ctrlWrapper } from "../helpers";
-import { ProductData } from "../db/ProductData";
-import products from "../db/data/products.json";
-import { ProductDto } from "../types/Dto";
+import { loadData } from "../db/data/loadData";
 
 // ============================== Get All
 
 const getAllProducts = async (req: Request, res: Response) => {
-  products.forEach((product) => {
-    ProductData.createProduct(product);
-  });
-
+  // loadData();
   res.json({ data: [] });
 };
 
