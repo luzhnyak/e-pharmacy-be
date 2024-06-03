@@ -34,7 +34,7 @@ export class ProductData {
     return result.rows[0];
   }
 
-  static async updateUserById(productObj: ProductDto, id: number) {
+  static async updateProductById(productObj: ProductDto, id: number) {
     const query = `UPDATE products  
           SET name = $1, 
           photo = $2, 
@@ -54,6 +54,14 @@ export class ProductData {
       productObj.category,
       id,
     ]);
+
+    return result.rows[0];
+  }
+
+  static async deleteProductById(id: number) {
+    const query = `DELETE products WHERE id = $1 RETURNING *`;
+
+    const result = await pool.query<ProductDto>(query, [id]);
 
     return result.rows[0];
   }

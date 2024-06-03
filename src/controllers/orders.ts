@@ -2,10 +2,6 @@ import { HttpError, ctrlWrapper } from "../helpers";
 
 import { Request, Response } from "express";
 
-// import Product from "../db/models/product";
-// import Order from "../db/models/order";
-// import OrderProduct from "../db/models/orderProduct";
-
 // ============================== Get All
 
 const getAllOrders = async (req: Request, res: Response) => {

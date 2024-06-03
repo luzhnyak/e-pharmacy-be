@@ -16,7 +16,7 @@ export class UserData {
     return result.rows[0];
   }
 
-  static async getUserByEmail(email: number) {
+  static async getUserByEmail(email: string) {
     const query = "SELECT * FROM users WHERE email = $1";
     const result = await pool.query<UserDto>(query, [email]);
     return result.rows[0];

@@ -9,4 +9,10 @@ router.get("/", ctrl.getAllProducts);
 
 router.get("/:id", ctrl.getProductById);
 
+router.post("/", ctrl.createProduct);
+
+router.put("/:id", ctrl.updateProductById);
+
+router.delete("/:id", ctrl.deleteProductById);
+
 export default router;

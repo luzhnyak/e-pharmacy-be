@@ -3,11 +3,8 @@ import logger from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 
-// const logger = require("morgan");
-// const cors = require("cors");
-// const dotenv = require("dotenv");
-
 import productsRouter from "./routes/api/products";
+import customersRouter from "./routes/api/customers";
 import orderRouter from "./routes/api/orders";
 
 dotenv.config();
@@ -24,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/products", productsRouter);
+app.use("/api/customers", customersRouter);
 app.use("/api/orders", orderRouter);
 
 app.use((req, res) => {
