@@ -9,9 +9,7 @@ router.get("/", ctrl.getAllUsers);
 
 router.get("/:id", ctrl.getUserById);
 
-router.post("/", ctrl.createUser);
-
-router.put("/:id", ctrl.updateUserById);
+router.post("/register", ctrl.register);
 
 router.post("/login", ctrl.login);
 

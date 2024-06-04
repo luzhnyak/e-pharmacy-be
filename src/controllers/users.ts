@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import { HttpError, ctrlWrapper } from "../helpers";
 import { UserData } from "../db/UserData";
 
+import { UserService } from "../services/users.service";
+
 // ============================== Get All
 
 const getAllUsers = async (req: Request, res: Response) => {
@@ -21,25 +23,14 @@ const getUserById = async (req: Request, res: Response) => {
   res.json({ data: user });
 };
 
-// ============================== Add User
+// ============================== Register
 
-const createUser = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
   const body = req.body;
 
-  const user = await UserData.createUser(body);
+  const data = await UserService.register(body);
 
-  res.json({ data: user });
-};
-
-// ============================== Update User
-
-const updateUserById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const body = req.body;
-
-  const user = await UserData.updateUserById(body, +id);
-
-  res.json({ data: user });
+  res.json(data);
 };
 
 // ============================== Login
@@ -47,9 +38,9 @@ const updateUserById = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
   const body = req.body;
 
-  const user = await UserData.getUserByEmail(body.email);
+  const data = await UserService.login(body);
 
-  res.json({ data: user });
+  res.json(data);
 };
 
 // ============================== Logout
@@ -61,8 +52,7 @@ const logout = async (req: Request, res: Response) => {
 export default {
   getAllUsers: ctrlWrapper(getAllUsers),
   getUserById: ctrlWrapper(getUserById),
-  createUser: ctrlWrapper(createUser),
-  updateUserById: ctrlWrapper(updateUserById),
+  register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
 };
