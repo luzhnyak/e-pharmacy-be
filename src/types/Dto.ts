@@ -24,6 +24,7 @@ export type SupplierDto = {
   id?: number;
   name: string;
   address: string;
+  suppliers: string;
   date: string;
   amount: string;
   status: string;

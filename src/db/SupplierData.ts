@@ -24,11 +24,12 @@ export class SupplierData {
 
   static async createSupplier(supplierObj: SupplierDto) {
     const query =
-      "INSERT INTO suppliers (name, address, date, amount, status) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+      "INSERT INTO suppliers (name, address, suppliers, date, amount, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
 
     const result = await pool.query<SupplierDto>(query, [
       supplierObj.name,
       supplierObj.address,
+      supplierObj.suppliers,
       supplierObj.date,
       supplierObj.amount,
       supplierObj.status,
@@ -40,16 +41,18 @@ export class SupplierData {
   static async updateSupplierById(supplierObj: SupplierDto, id: number) {
     const query = `UPDATE users  
           SET name = $1, 
-          address = $2, 
-          date = $3,
-          amount = $4,
-          status = $5,
-          WHERE id = $6
+          address = $2,
+          suppliers = $3, 
+          date = $4,
+          amount = $5,
+          status = $6,
+          WHERE id = $7
           RETURNING *`;
 
     const result = await pool.query<SupplierDto>(query, [
       supplierObj.name,
       supplierObj.address,
+      supplierObj.suppliers,
       supplierObj.date,
       supplierObj.amount,
       supplierObj.status,

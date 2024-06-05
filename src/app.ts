@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import usersRouter from "./routes/api/users";
 import productsRouter from "./routes/api/products";
 import customersRouter from "./routes/api/customers";
+import suppliersRouter from "./routes/api/suppliers";
 import incomeExpensesRouter from "./routes/api/incomeExpenses";
 import orderRouter from "./routes/api/orders";
 
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use("/api/users", usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/customers", customersRouter);
+app.use("/api/suppliers", suppliersRouter);
 app.use("/api/income-expenses", incomeExpensesRouter);
 app.use("/api/orders", orderRouter);
 
