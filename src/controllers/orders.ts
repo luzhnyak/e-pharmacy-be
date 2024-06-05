@@ -1,11 +1,13 @@
 import { HttpError, ctrlWrapper } from "../helpers";
 
 import { Request, Response } from "express";
+import { OrdersService } from "../services/orders.service";
 
 // ============================== Get All
 
 const getAllOrders = async (req: Request, res: Response) => {
-  res.json({ data: [] });
+  const orders = await OrdersService.getAllOrders();
+  res.json({ data: orders });
 };
 
 // ============================== Get by ID

@@ -4,6 +4,7 @@ import { HttpError, ctrlWrapper } from "../helpers";
 import { UserData } from "../db/UserData";
 
 import { UserService } from "../services/users.service";
+import { AuthenticatedRequest } from "../types/types";
 
 // ============================== Get All
 
@@ -49,10 +50,19 @@ const logout = async (req: Request, res: Response) => {
   res.json({ data: "loout" });
 };
 
+// ============================== Refresh user
+
+const refreshUser = async (req: AuthenticatedRequest, res: Response) => {
+  const user = req.user;
+
+  res.json(user);
+};
+
 export default {
   getAllUsers: ctrlWrapper(getAllUsers),
   getUserById: ctrlWrapper(getUserById),
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
+  refreshUser: ctrlWrapper(refreshUser),
 };

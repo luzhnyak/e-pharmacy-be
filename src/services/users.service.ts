@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { UserDto } from "../types/Dto";
+import { LoginUserDto, UserDto } from "../types/Dto";
 import { UserData } from "../db/UserData";
 import { HttpError } from "../helpers";
 import { TokenService } from "./token.service";
@@ -23,7 +23,7 @@ export class UserService {
     return { id: newUser.id, name: newUser.name, email: newUser.email };
   }
 
-  static async login(userObj: UserDto) {
+  static async login(userObj: LoginUserDto) {
     const user = await UserData.getUserByEmail(userObj.email);
 
     if (!user) {
@@ -47,6 +47,16 @@ export class UserService {
       }),
       user: { id: user.id, name: user.name, email: user.email },
     };
+  }
+
+  static async getUserById(id: number) {
+    const user = await UserData.getUserById(id);
+
+    if (!user) {
+      throw new HttpError(404, "User not found");
+    }
+
+    return user;
   }
 
   static async logout() {

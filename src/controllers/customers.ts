@@ -1,27 +1,17 @@
 import { Request, Response } from "express";
 
 import { HttpError, ctrlWrapper } from "../helpers";
-import { CustomerData } from "../db/CustomerData";
+
+import { CustomersService } from "../services/customers.service";
 
 // ============================== Get All
 
 const getAllCustomers = async (req: Request, res: Response) => {
-  const customers = await CustomerData.getAllcustomers();
+  const customers = await CustomersService.getAllCustomers();
 
   res.json({ data: customers });
 };
 
-// ============================== Get by ID
-
-const getCustomerById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-
-  const customer = await CustomerData.getCustomerById(+id);
-
-  res.json({ data: customer });
-};
-
 export default {
   getAllCustomers: ctrlWrapper(getAllCustomers),
-  getCustomerById: ctrlWrapper(getCustomerById),
 };

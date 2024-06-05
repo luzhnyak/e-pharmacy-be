@@ -5,6 +5,11 @@ export type UserDto = {
   password: string;
 };
 
+export type LoginUserDto = {
+  email: string;
+  password: string;
+};
+
 export type ProductDto = {
   id?: number;
   photo: string;

@@ -1,10 +1,9 @@
-import { Pool, QueryResult } from "pg";
 import { pool } from "./config";
 
 import { CustomerDto } from "../types/Dto";
 
 export class CustomerData {
-  static async getAllcustomers() {
+  static async getAllCustomers() {
     const query = "SELECT * FROM customers";
     const result = await pool.query<CustomerDto>(query);
     return result.rows;
