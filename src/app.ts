@@ -20,8 +20,27 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const allowedOrigins = [
+  "https://epharmacy.vercel.app",
+  "http://localhost:5173/",
+];
+
+const corsOptions = {
+  origin: function (
+    origin: string | undefined,
+    callback: (err: Error | null, allow?: boolean) => void
+  ) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }, // Домен, якому дозволено доступ
+  optionsSuccessStatus: 200, // Для старих браузерів, які не підтримують статус 204 для preflight запитів
+};
+
 app.use(logger(formatsLogger));
-// app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/users", usersRouter);
