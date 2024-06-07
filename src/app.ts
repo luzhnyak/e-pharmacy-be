@@ -22,7 +22,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "https://epharmacy.vercel.app",
-  "http://localhost:5173/",
+  "http://localhost:5173",
 ];
 
 const corsOptions = {

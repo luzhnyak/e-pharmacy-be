@@ -43,7 +43,7 @@ const updateProductById = async (req: Request, res: Response) => {
   res.json({ data: product });
 };
 
-// ============================== Get by ID
+// ============================== Delete by ID
 
 const deleteProductById = async (req: Request, res: Response) => {
   const { id } = req.params;

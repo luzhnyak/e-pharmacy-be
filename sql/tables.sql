@@ -19,7 +19,7 @@ CREATE TABLE
 CREATE TABLE
     products (
         id SERIAL PRIMARY KEY,
-        photo VARCHAR(255) NOT NULL,
+        photo VARCHAR(255),
         name VARCHAR(255) NOT NULL,
         suppliers VARCHAR(255) NOT NULL,
         stock VARCHAR(255) NOT NULL,

@@ -18,13 +18,11 @@ export class ProductData {
 
   static async createProduct(productObj: ProductDto) {
     const query = `INSERT INTO products 
-      (id, name, photo, suppliers, stock, price, category) VALUES
-      ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+      (name, suppliers, stock, price, category) VALUES
+      ($1, $2, $3, $4, $5) RETURNING *`;
 
     const result = await pool.query<ProductDto>(query, [
-      productObj.id,
       productObj.name,
-      productObj.photo,
       productObj.suppliers,
       productObj.stock,
       productObj.price,
@@ -34,20 +32,36 @@ export class ProductData {
     return result.rows[0];
   }
 
+  // static async createProduct(productObj: ProductDto) {
+  //   const query = `INSERT INTO products
+  //     (id, name, photo, suppliers, stock, price, category) VALUES
+  //     ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+
+  //   const result = await pool.query<ProductDto>(query, [
+  //     productObj.id,
+  //     productObj.name,
+  //     productObj.photo,
+  //     productObj.suppliers,
+  //     productObj.stock,
+  //     productObj.price,
+  //     productObj.category,
+  //   ]);
+
+  //   return result.rows[0];
+  // }
+
   static async updateProductById(productObj: ProductDto, id: number) {
     const query = `UPDATE products  
-          SET name = $1, 
-          photo = $2, 
-          suppliers = $3,
-          stock = $4,
-          price = $5,
-          category = $6
-          WHERE id = $7
+          SET name = $1,           
+          suppliers = $2,
+          stock = $3,
+          price = $4,
+          category = $5
+          WHERE id = $6
           RETURNING *`;
 
     const result = await pool.query<ProductDto>(query, [
       productObj.name,
-      productObj.photo,
       productObj.suppliers,
       productObj.stock,
       productObj.price,
@@ -59,7 +73,7 @@ export class ProductData {
   }
 
   static async deleteProductById(id: number) {
-    const query = `DELETE products WHERE id = $1 RETURNING *`;
+    const query = `DELETE FROM products WHERE id = $1 RETURNING *`;
 
     const result = await pool.query<ProductDto>(query, [id]);
 
