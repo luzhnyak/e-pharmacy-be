@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(logger(formatsLogger));
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", usersRouter);
