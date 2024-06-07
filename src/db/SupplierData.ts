@@ -39,13 +39,13 @@ export class SupplierData {
   }
 
   static async updateSupplierById(supplierObj: SupplierDto, id: number) {
-    const query = `UPDATE users  
+    const query = `UPDATE suppliers  
           SET name = $1, 
           address = $2,
           suppliers = $3, 
           date = $4,
           amount = $5,
-          status = $6,
+          status = $6
           WHERE id = $7
           RETURNING *`;
 

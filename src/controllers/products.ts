@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 
 import { HttpError, ctrlWrapper } from "../helpers";
-import { loadData } from "../db/data/loadData";
-import { ProductData } from "../db/ProductData";
+// import { loadData } from "../db/data/loadData";
+
+import { ProductsService } from "../services/products.service";
 
 // ============================== Get All
 
 const getAllProducts = async (req: Request, res: Response) => {
-  const products = await ProductData.getAllProducts();
+  const products = await ProductsService.getAllProducts();
 
   res.json({ data: products });
 };
@@ -17,7 +18,7 @@ const getAllProducts = async (req: Request, res: Response) => {
 const getProductById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const product = await ProductData.getProductById(+id);
+  const product = await ProductsService.getProductById(+id);
 
   res.json({ data: product });
 };
@@ -27,7 +28,7 @@ const getProductById = async (req: Request, res: Response) => {
 const createProduct = async (req: Request, res: Response) => {
   const body = req.body;
 
-  const product = await ProductData.createProduct(body);
+  const product = await ProductsService.createProduct(body);
 
   res.json({ data: product });
 };
@@ -38,7 +39,7 @@ const updateProductById = async (req: Request, res: Response) => {
   const { id } = req.params;
   const body = req.body;
 
-  const product = await ProductData.updateProductById(body, +id);
+  const product = await ProductsService.updateProductById(body, +id);
 
   res.json({ data: product });
 };
@@ -48,7 +49,7 @@ const updateProductById = async (req: Request, res: Response) => {
 const deleteProductById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const product = await ProductData.deleteProductById(+id);
+  const product = await ProductsService.deleteProductById(+id);
 
   res.json({ data: product });
 };
