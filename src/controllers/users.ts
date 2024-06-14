@@ -53,9 +53,11 @@ const logout = async (req: Request, res: Response) => {
 // ============================== Refresh user
 
 const refreshUser = async (req: AuthenticatedRequest, res: Response) => {
-  const user = req.user;
+  const user = req.user!;
 
-  res.json(user);
+  const data = await UserService.refresh(user);
+
+  res.json(data);
 };
 
 export default {

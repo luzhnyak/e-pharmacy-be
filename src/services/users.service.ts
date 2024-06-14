@@ -49,6 +49,23 @@ export class UserService {
     };
   }
 
+  static async refresh(userObj: { id: number; name: string; email: string }) {
+    const user = await UserData.getUserByEmail(userObj.email);
+
+    if (!user) {
+      throw new HttpError(404, "User not found");
+    }
+
+    return {
+      token: TokenService.generateTokens({
+        id: user.id!,
+        name: user.name,
+        email: user.email,
+      }),
+      user: { id: user.id, name: user.name, email: user.email },
+    };
+  }
+
   static async getUserById(id: number) {
     const user = await UserData.getUserById(id);
 
